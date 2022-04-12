@@ -91,7 +91,8 @@ SELECT MIN(SALARY)
 FROM EMPLOYEES;
 
 --Task 14: get me max salary of employees
-
+SELECT MAX(SALARY)
+FROM EMPLOYEES;
 
 --Task 15: get me total salary of employees
 
