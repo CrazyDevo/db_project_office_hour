@@ -87,7 +87,8 @@ SELECT ROUND( AVG(SALARY),2)
 FROM EMPLOYEES;
 
 --Task 13: get me min salary of employees
-
+SELECT MIN(SALARY)
+FROM EMPLOYEES;
 
 --Task 14: get me max salary of employees
 
