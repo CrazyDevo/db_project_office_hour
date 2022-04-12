@@ -80,6 +80,11 @@ FROM EMPLOYEES;
 
 --Task 12: get me average salary of employees
 
+SELECT AVG(SALARY)
+FROM EMPLOYEES;
+
+SELECT ROUND( AVG(SALARY),2)
+FROM EMPLOYEES;
 
 --Task 13: get me min salary of employees
 
