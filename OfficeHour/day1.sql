@@ -95,7 +95,8 @@ SELECT MAX(SALARY)
 FROM EMPLOYEES;
 
 --Task 15: get me total salary of employees
-
+SELECT SUM(SALARY)
+FROM EMPLOYEES;
 
 --Task 16: add @gmail.com and name new column to full_email
 
