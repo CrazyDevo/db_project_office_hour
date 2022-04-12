@@ -99,4 +99,5 @@ SELECT SUM(SALARY)
 FROM EMPLOYEES;
 
 --Task 16: add @gmail.com and name new column to full_email
-
+SELECT LOWER(FIRST_NAME) || '@gmail.com' as FULL_EMAIL
+FROM EMPLOYEES;
