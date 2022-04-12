@@ -75,6 +75,8 @@ ORDER BY FIRST_NAME ASC ,LAST_NAME DESC ;
 
 --Task 11: get me unique first name row numbers in a table
 
+SELECT COUNT(DISTINCT FIRST_NAME)
+FROM EMPLOYEES;
 
 --Task 12: get me average salary of employees
 
