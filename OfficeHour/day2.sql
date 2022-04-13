@@ -4,8 +4,13 @@ FROM EMPLOYEES
 INNER JOIN DEPARTMENTS
 ON EMPLOYEES.DEPARTMENT_ID = DEPARTMENTS.DEPARTMENT_ID;
 
--- 2. write a SQL query to find the first name, last name, department, city, and state province for each employee.
-
+-- 2. write a SQL query to find the first name, last name, department name, city, and state province for each employee.
+SELECT E.FIRST_NAME,E.LAST_NAME,D.DEPARTMENT_NAME,L.CITY,L.STATE_PROVINCE
+FROM EMPLOYEES E
+JOIN DEPARTMENTS D
+ON E.DEPARTMENT_ID = D.DEPARTMENT_ID
+JOIN LOCATIONS L
+ON D.LOCATION_ID = L.LOCATION_ID;
 
 -- 3. write a SQL query to find the first name, last name, salary, and job grade for all employees.
 
