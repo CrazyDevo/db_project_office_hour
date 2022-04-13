@@ -77,8 +77,19 @@ FROM DEPARTMENTS
          JOIN LOCATIONS
               ON DEPARTMENTS.LOCATION_ID = LOCATIONS.LOCATION_ID;
 
+--SAME
+SELECT DEPARTMENT_NAME, CITY, STATE_PROVINCE
+FROM LOCATIONS
+         --INNER JOIN LOCATIONS --SAME
+         JOIN DEPARTMENTS
+              ON DEPARTMENTS.LOCATION_ID = LOCATIONS.LOCATION_ID;
 
 -- 9. write a SQL query to find the employees and their managers. Return the first name of the employee and manager.
+SELECT E.FIRST_NAME AS EMPLOYEES,M.FIRST_NAME AS MANAGERS
+FROM EMPLOYEES E
+INNER JOIN EMPLOYEES M
+ON E.EMPLOYEE_ID=M.MANAGER_ID
+ORDER BY M.FIRST_NAME;
 
 
 -- 10 write a SQL query to find those employees who have or not any department. Return first name, last name, department ID, department name.
@@ -92,8 +103,25 @@ FROM DEPARTMENTS
 
 -- 13.write a SQL query to find those employees who get higher salary than the employee whose ID is 163. Return first name, last name.
 
+SELECT FIRST_NAME,LAST_NAME,SALARY
+FROM EMPLOYEES
+    WHERE SALARY>(
+-- FIRST I WİLL GET THE SALARY OF THAT EMPLOYEE
+SELECT SALARY
+FROM EMPLOYEES
+WHERE EMPLOYEE_ID=163);
 
--- 14.write a SQL query to find those employees whose designation is the same as the employee whose ID is 169. Return first name, last name, department ID and job ID.
+-- 14.write a SQL query to find those employees whose designation (JOB_TITLE JOB_ID) is the same as the employee whose ID is 169.
+-- Return first name, last name, department ID and job ID.
+
+SELECT FIRST_NAME,LAST_NAME,DEPARTMENT_ID,JOB_ID
+FROM EMPLOYEES
+    WHERE JOB_ID=(
+
+--I will find the job_id of that employee whose ID is 169.
+SELECT JOB_ID
+FROM EMPLOYEES
+WHERE EMPLOYEE_ID=169);
 
 
 -- 15.write a SQL query to find those employees whose salary matches the smallest salary of any of the departments. Return first name, last name and department ID.
