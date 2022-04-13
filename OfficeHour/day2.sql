@@ -117,7 +117,11 @@ FROM EMPLOYEES E
                                 (SELECT DISTINCT MANAGER_ID FROM EMPLOYEES WHERE MANAGER_ID IS NOT NULL)) M
                          ON M.EMPLOYEE_ID = E.MANAGER_ID;
 -- 12.write a SQL query to find those employees who work in a department where the employee of last name 'Taylor' works. Return first name, last name and department ID
-
+SELECT E.first_name, E.last_name, E.department_id --, S.FIRST_NAME, S.LAST_NAME
+FROM employees E
+         JOIN employees S
+              ON E.department_id = S.department_id
+WHERE S.last_name = 'Taylor';
 
 -- 13.write a SQL query to find those employees who get higher salary than the employee whose ID is 163. Return first name, last name.
 
