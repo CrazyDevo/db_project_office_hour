@@ -13,9 +13,17 @@ JOIN LOCATIONS L
 ON D.LOCATION_ID = L.LOCATION_ID;
 
 -- 3. write a SQL query to find the first name, last name, salary, and job grade for all employees.
+SELECT EMPLOYEES.FIRST_NAME,EMPLOYEES.LAST_NAME,EMPLOYEES.SALARY,JOB_GRADES.GRADE
+FROM EMPLOYEES
+INNER JOIN JOB_GRADES
+ON EMPLOYEES.SALARY BETWEEN JOB_GRADES.LOWEST_SAL AND JOB_GRADES.HIGHEST_SAL;
 
-
--- 4. write a SQL query to find all those employees who work in department ID 80 or 40. Return first name, last name, department number and department name.
+-- 4. write a SQL query to find all those employees who work in department ID 80 or 40. Return first name, last name, department id and department name.
+SELECT FIRST_NAME,LAST_NAME,DEPARTMENTS.DEPARTMENT_ID,DEPARTMENT_NAME
+FROM EMPLOYEES
+JOIN DEPARTMENTS
+ON EMPLOYEES.DEPARTMENT_ID = DEPARTMENTS.DEPARTMENT_ID
+WHERE DEPARTMENTS.DEPARTMENT_ID IN(80,40);
 
 
 -- 5. write a SQL query to find those employees whose first name contains a letter ‘z’. Return first name, last name, department, city, and state province.
