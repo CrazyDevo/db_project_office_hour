@@ -94,6 +94,11 @@ ORDER BY M.FIRST_NAME;
 
 -- 10 write a SQL query to find those employees who have or not any department. Return first name, last name, department ID, department name.
 
+SELECT E.first_name, E.last_name, E.department_id, D.department_name
+FROM employees E
+         LEFT OUTER JOIN departments D
+                         ON E.department_id = D.department_id;
+
 
 -- 11. write a SQL query to find the employees and their managers. These managers do not work under any manager. Return the first name of the employee and manager.
 
