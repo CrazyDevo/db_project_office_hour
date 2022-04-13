@@ -107,6 +107,15 @@ SELECT E.first_name AS "Employee Name",
 FROM employees E
          LEFT OUTER JOIN employees M
                          ON E.manager_id = M.employee_id;
+
+--second solution
+SELECT E.FIRST_NAME, M.FIRST_NAME
+FROM EMPLOYEES E
+         LEFT OUTER JOIN (SELECT *
+                          FROM EMPLOYEES
+                          WHERE EMPLOYEE_ID IN
+                                (SELECT DISTINCT MANAGER_ID FROM EMPLOYEES WHERE MANAGER_ID IS NOT NULL)) M
+                         ON M.EMPLOYEE_ID = E.MANAGER_ID;
 -- 12.write a SQL query to find those employees who work in a department where the employee of last name 'Taylor' works. Return first name, last name and department ID
 
 
