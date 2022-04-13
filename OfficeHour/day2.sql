@@ -124,29 +124,111 @@ FROM EMPLOYEES
 WHERE EMPLOYEE_ID=169);
 
 
--- 15.write a SQL query to find those employees whose salary matches the smallest salary of any of the departments. Return first name, last name and department ID.
+-- 15.write a SQL query to find those employees whose salary matches the smallest salary of any of the departments.
+-- Return first name, last name and department ID.
 
+SELECT FIRST_NAME,LAST_NAME,DEPARTMENT_ID
+FROM EMPLOYEES
+    WHERE SALARY IN (
+--I will get the min salary for each department
+SELECT MIN(SALARY)
+FROM EMPLOYEES
+GROUP BY DEPARTMENT_ID);
 
--- 16. write a SQL query to find those employees who earn more than the average salary. Return employee ID, first name, last name.
+-- 16. write a SQL query to find those employees who earn more than the average salary.
+-- Return employee ID, first name, last name.
+SELECT EMPLOYEE_ID,FIRST_NAME,LAST_NAME
+FROM EMPLOYEES
+    WHERE SALARY>(
+--I will find the avg(salary)
+SELECT avg(SALARY)
+FROM EMPLOYEES);
 
+-- 17. write a SQL query to find those employees who report that manager whose first name is ‘Payam’.
+-- Return first name, last name, employee ID and salary.
+SELECT FIRST_NAME,LAST_NAME,EMPLOYEE_ID,SALARY
+FROM EMPLOYEES
+    WHERE MANAGER_ID=(
+--I will find the employee id who is Payam
+SELECT EMPLOYEE_ID
+FROM EMPLOYEES
+WHERE FIRST_NAME='Payam');
 
--- 17. write a SQL query to find those employees who report that manager whose first name is ‘Payam’. Return first name, last name, employee ID and salary.
+-- 18. write a SQL query to find all those employees who work in the Finance department.
+-- Return department ID, name (first), job ID and department name.
+--first solution
 
+SELECT D.DEPARTMENT_ID,E.FIRST_NAME,E.JOB_ID,D.DEPARTMENT_NAME
+FROM EMPLOYEES E,DEPARTMENTS D
+WHERE E.DEPARTMENT_ID=D.DEPARTMENT_ID
+AND D.DEPARTMENT_NAME='Finance';
 
--- 18. write a SQL query to find all those employees who work in the Finance department. Return department ID, name (first), job ID and department name.
+--second solution
+SELECT D.DEPARTMENT_ID,E.FIRST_NAME,E.JOB_ID,D.DEPARTMENT_NAME
+FROM EMPLOYEES E
+JOIN DEPARTMENTS D
+ON E.DEPARTMENT_ID=D.DEPARTMENT_ID
+
+  WHERE D.DEPARTMENT_NAME='Finance';
 
 
 -- 19. write a SQL query to find those employees whose ID matches any of the number 134, 159 and 183. Return all the fields.
+SELECT *
+FROM EMPLOYEES
+WHERE EMPLOYEE_ID IN (134,159,183);
 
+-- 20. write a SQL query to find those employees whose salary is in the range of smallest salary, and 2500.
+-- Return all the fields.
+SELECT *
+FROM EMPLOYEES
+    WHERE SALARY BETWEEN (
 
--- 20. write a SQL query to find those employees whose salary is in the range of smallest salary, and 2500. Return all the fields.
-
-
--- 21. write a SQL query to find those employees who do not work in those departments where manager ids are in the range 100, 200 (Begin and end values are included.) Return all the fields of the employees.
+--I need to get smallest salary
+SELECT MIN(SALARY)
+FROM EMPLOYEES) AND 2500;
+-- 21. write a SQL query to find those employees who do not work in those departments
+-- where manager ids are in the range 100, 200 (Begin and end values are included.)
+-- Return all the fields of the employees.
+SELECT *
+FROM EMPLOYEES
+    WHERE DEPARTMENT_ID NOT IN (
+--I need to get Departments id's with manager id is between 100 and 200;
+SELECT D.DEPARTMENT_ID
+FROM DEPARTMENTS D
+WHERE EMPLOYEES.MANAGER_ID BETWEEN 100 AND 200);
 
 
 -- 22. write a SQL query to find those employees who get second-highest salary. Return all the fields of the employees.
+SELECT MAX(SALARY)
+FROM EMPLOYEES
+    WHERE SALARY!=(
+
+SELECT MAX(SALARY)
+FROM EMPLOYEES);
+
 
 
 -- 23. write a SQL query to find those employees who get fifth-highest salary. Return all the fields of the employees.
 
+SELECT MIN(SALARY)
+FROM(SELECT DISTINCT SALARY
+FROM EMPLOYEES
+ORDER BY SALARY DESC)
+WHERE ROWNUM<=8
+   ;
+
+SELECT SALARY
+FROM(SELECT DISTINCT SALARY
+     FROM EMPLOYEES
+     ORDER BY SALARY DESC)
+WHERE ROWNUM<=5
+;
+SELECT *
+FROM EMPLOYEES
+    WHERE SALARY=(
+SELECT MIN(SALARY)
+FROM (
+SELECT DISTINCT SALARY
+FROM EMPLOYEES
+ORDER BY SALARY DESC )
+WHERE ROWNUM<=5);
