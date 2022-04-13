@@ -102,7 +102,11 @@ FROM employees E
 
 -- 11. write a SQL query to find the employees and their managers. These managers do not work under any manager. Return the first name of the employee and manager.
 
-
+SELECT E.first_name AS "Employee Name",
+       M.first_name AS "Manager"
+FROM employees E
+         LEFT OUTER JOIN employees M
+                         ON E.manager_id = M.employee_id;
 -- 12.write a SQL query to find those employees who work in a department where the employee of last name 'Taylor' works. Return first name, last name and department ID
 
 
