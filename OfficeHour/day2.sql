@@ -1,5 +1,8 @@
 -- 1. write a SQL query to find the first name, last name, department number, and department name for each employee.
-
+SELECT EMPLOYEES.FIRST_NAME,EMPLOYEES.LAST_NAME,DEPARTMENTS.DEPARTMENT_ID,DEPARTMENTS.DEPARTMENT_NAME
+FROM EMPLOYEES
+INNER JOIN DEPARTMENTS
+ON EMPLOYEES.DEPARTMENT_ID = DEPARTMENTS.DEPARTMENT_ID;
 
 -- 2. write a SQL query to find the first name, last name, department, city, and state province for each employee.
 
